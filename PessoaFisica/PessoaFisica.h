@@ -9,17 +9,25 @@ using namespace std;
 class PessoaFisica : public Pessoa {
     private:
         string cpf;
+        string dataNascimento;
  
     public:
+        PessoaFisica() {};
+
         PessoaFisica(
             int id,
             string nome,
             string email,
-            string cpf
+            string telefone,
+            string cpf,
+            string dataNascimento
         );
  
         string getCpf() const;
+        string getDataNascimento() const;
+
         void setCpf(string cpf);
+        void setDataNascimento(string dataNascimento);
  
         void exibirDados() const override;
  
