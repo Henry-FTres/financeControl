@@ -2,6 +2,9 @@
 #define PESSOA_H
 
 #include <string>
+#include <vector>
+#include "Conta.h"
+#include "Meta.h"
 
 using namespace std;
 
@@ -10,13 +13,19 @@ class Pessoa {
         int id;
         string nome;
         string email;
+        string telefone;
+        vector<Conta> contas;
+        vector<Meta> metas;
 
     public:
 
         // Construtor
         Pessoa(int id, 
             string nome, 
-            string email
+            string email,
+            string telefone,
+            vector<Conta> contas,
+            vector<Meta> metas
         );
 
         // Destrutor
