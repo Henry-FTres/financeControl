@@ -31,11 +31,8 @@ class Pessoa {
         void setNome(string nome);
         void setEmail(string email);
         
-        // Metodo abstrato
-        virtual void exibirDados() const;
+        // Metodo abstrato, informa ao compilador que não deve ser instanciada
+        virtual void exibirDados() const = 0;
 };
-
-
- 
 
 #endif
