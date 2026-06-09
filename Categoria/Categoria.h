@@ -1,0 +1,30 @@
+#ifndef CATEGORIA_H
+#define CATEGORIA_H
+ 
+#include <iostream>
+ 
+using namespace std;
+ 
+class Categoria {
+    private:
+        int idCategoria;
+        string nome;
+        bool fixo;
+    public:
+        Categoria();
+ 
+        Categoria(
+            int idCategoria,
+            string nome,
+            bool fixo
+        );
+ 
+        int getIdCategoria() const;
+        string getNome() const;
+        bool getFixo() const;
+ 
+        void setNome(string nome);
+        void setFixo(bool fixo);
+};
+ 
+#endif
