@@ -1,11 +1,11 @@
-#ifndef INSTITUICAO_H
-#define INSTITUICAO_H
+#ifndef CONTA_H
+#define CONTA_H
 
 #include <iostream>
 
 using namespace std;
 
-class Instituicao {
+class Conta {
     private:
         int id;
         string nroConta;
@@ -15,9 +15,9 @@ class Instituicao {
         string chavePix;
 
         public:
-            Instituicao();
+            Conta();
 
-            Instituicao(
+            Conta(
                 int id,
                 string nroConta,
                 double saldo,
