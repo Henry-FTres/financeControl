@@ -2,42 +2,45 @@
 #define CONTA_H
 
 #include <iostream>
+#include <vector>
+#include "Movimentacao.h"
 
 using namespace std;
 
 class Conta {
     private:
         int id;
+        string instituicao;
         string nroConta;
+        string chavePix;
         double saldo;
         string tipoConta;
-        string nome;
-        string chavePix;
+        vector<Movimentacao> movimentacoes;
 
         public:
             Conta();
 
             Conta(
                 int id,
+                string instituicao,
                 string nroConta,
+                string chavePix,
                 double saldo,
-                string tipoConta,
-                string nome,
-                string chavePix
+                string tipoConta
             );
 
             int getId() const;
+            string getInstituicao() const;
             string getNroConta() const;
+            string getChavePix() const;
             double getSaldo() const;
             string getTipoConta() const;
-            string getNome() const;
-            string getChavePix() const;
 
+            void setInstituicao(string instituicao);
             void setNroConta(string nroConta);
-            void setSaldo(string saldo);
-            void setTipoConta(string tipoConta);
-            void setNome(string nome);
             void setChavePix(string chavePix);
+            void setSaldo(double saldo);
+            void setTipoConta(string tipoConta);
 
 };
 
