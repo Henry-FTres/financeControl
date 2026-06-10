@@ -2,7 +2,7 @@
 #define PESSOAJURIDICA_H
 
 #include "Pessoa.h"
-#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -20,12 +20,16 @@ class PessoaJuridica : public Pessoa {
             string email,
             string telefone,
             string cnpj,
-            string razaoSocial
+            string razaoSocial,
+            vector<Conta> contas, 
+            vector<Meta> metas
         );
 
+        //getters
         string getCnpj() const;
         string getRazaoSocial() const;
 
+        //setters
         void setCnpj(string cnpj);
         void setRazaoSocial(string razaoSocial);
 
