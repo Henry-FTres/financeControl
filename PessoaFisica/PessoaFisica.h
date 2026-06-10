@@ -20,12 +20,16 @@ class PessoaFisica : public Pessoa {
             string email,
             string telefone,
             string cpf,
-            string dataNascimento
+            string dataNascimento,
+            vector<Conta> contas = {},
+            vector<Meta> metas = {}
         );
- 
+        
+        //getters
         string getCpf() const;
         string getDataNascimento() const;
 
+        //setters
         void setCpf(string cpf);
         void setDataNascimento(string dataNascimento);
  
