@@ -1,10 +1,11 @@
-#ifndef PESSOA_H
-#define PESSOA_H
+#ifndef PESSOA_H //para não compilar múltiplas vezes
+#define PESSOA_H //definir
 
 #include <string>
 #include <vector>
 #include "Conta.h"
 #include "Meta.h"
+#include "Categoria.h"
 
 using namespace std;
 
@@ -43,8 +44,16 @@ class Pessoa {
         void setEmail(string email);
         void setTelefone(string telefone);
         
-        // Metodo abstrato, informa ao compilador que não deve ser instanciada
+        //virtual quer dizer que pode ser sobrescrita e const = 0 diz que cada classe filha deve implementar essa função de uma forma, tornando a classe pessoa abstrata
         virtual void exibirDados() const = 0;
+
+        void adicionarConta( Conta conta);
+        void removerConta(Conta conta);
+        void adicionarMeta(Meta meta);
+        void removerMeta(Meta meta);
+        double calcularSaldoTotal();
+        double calcularSaldoCategoria(Categoria categoria);
+        void listarMetas();
 };
 
 #endif
