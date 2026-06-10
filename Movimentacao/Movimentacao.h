@@ -2,46 +2,47 @@
 #define MOVIMENTACAO_H
 
 #include <string>
+#include "Categoria.h"
 
 using namespace std;
 
 class Movimentacao {
     private:
         int id;
-        string moeda;
-        string tipoMovimentacao;
-        double valor;
-        string contraparte;
-        string descricao;
         string data;
+        double valor;
+        string tipoMovimentacao;
+        string descricao;
+        string contraparte;
+        Categoria categoria;
 
     public:
         Movimentacao();
 
         Movimentacao(
             int id,
-            string moeda,
-            string tipoMovimentacao,
             double valor,
-            string contraparte,
+            string data,
+            string tipoMovimentacao,
             string descricao,
-            string data
+            string contraparte,
+            Categoria categoria
         );
 
         int getId() const;
-        string getMoeda() const;
-        string getTipoMovimentacao() const;
         double getValor() const;
-        string getContraparte() const;
-        string getDescricao() const;
         string getData() const;
+        string getTipoMovimentacao() const;
+        string getDescricao() const;
+        string getContraparte() const;
+        Categoria getCategoria() const;
 
-        void setMoeda(string moeda);
-        void setTipoMovimentacao(string tipoMovimentacao);
         void setValor(double valor);
-        void setContraparte(string contraparte);
-        void setDescricao(string descricao);
         void setData(string data); 
+        void setTipoMovimentacao(string tipoMovimentacao);
+        void setDescricao(string descricao);
+        void setContraparte(string contraparte);
+        void setCategoria(Categoria categoria);
 };
 
 #endif
