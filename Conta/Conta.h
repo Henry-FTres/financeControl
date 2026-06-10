@@ -42,6 +42,13 @@ class Conta {
             void setSaldo(double saldo);
             void setTipoConta(string tipoConta);
 
+            void exibirDados() const;
+            void adicionarMovimentacao(const Movimentacao& m);
+            void removerMovimentacao(int id);
+            double totalPorCategoria(const string& categoria, const string& tipoMovimentacao) const;
+            void transferir(Conta& destino, double valor);
+            void listarMovimentacoes() const;
+
 };
 
 
