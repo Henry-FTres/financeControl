@@ -7,10 +7,15 @@ PessoaJuridica::PessoaJuridica(
     int id,
     string nome,
     string email,
-    string cnpj
-) : Pessoa (id, nome, email) {this->cnpj = cnpj;}
+    string telefone,
+    string cnpj,
+    string razaoSocial
+) : Pessoa (id, nome, email, telefone) {
+    this->cnpj = cnpj;
+    this->razaoSocial = razaoSocial;
+}
 
-string PessoaJuridica::getCnpj() const {return cnpj;}
+string PessoaJuridica::getCnpj() const {return this->cnpj;}
 
 void PessoaJuridica::setCnpj(string cnpj) {this->cnpj = cnpj;}
 
