@@ -213,11 +213,11 @@ Os comandos abaixo já estão validados no projeto.
 ### Compilação
 
 ```bash
-g++ Main.cpp Categoria\Categoria.cpp Conta\Conta.cpp Movimentacao\Movimentacao.cpp Meta\Meta.cpp Pessoa\Pessoa.cpp PessoaFisica\PessoaFisica.cpp PessoaJuridica\PessoaJuridica.cpp -o financeControl.exe
+g++ Main.cpp Categoria/Categoria.cpp Conta/Conta.cpp Movimentacao/Movimentacao.cpp Meta/Meta.cpp Pessoa/Pessoa.cpp PessoaFisica/PessoaFisica.cpp PessoaJuridica/PessoaJuridica.cpp -o financeControl.exe
 ```
 
 ### Execução
 
 ```bash
-.\financeControl.exe
+./financeControl.exe
 ```
