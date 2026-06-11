@@ -43,6 +43,10 @@ class Movimentacao {
         void setDescricao(string descricao);
         void setContraparte(string contraparte);
         void setCategoria(Categoria categoria);
+
+        void exibirDados() const;
+        void atualizarCategoria(Categoria categoria);
+        void editarValor(double valor);
 };
 
 #endif
