@@ -27,7 +27,8 @@ class Categoria {
         void setNome(string nome);
         void setFixo(bool fixo);
 
-        void exibirDados()const;
+        void exibirDados() const;
+        void inverterFixo();
 };
  
 #endif

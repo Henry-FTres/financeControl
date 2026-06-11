@@ -37,3 +37,7 @@ void Categoria::exibirDados()const{
      << "Nome: " << nome << "\n"
      << "Tipo: " << (fixo ? "Fixa" : "Personalizada") << "\n";
 }
+
+void Categoria::inverterFixo() {
+    this->fixo = !fixo;
+}   

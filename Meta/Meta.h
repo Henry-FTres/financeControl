@@ -37,6 +37,7 @@ class Meta {
         void setPrazo(string prazo);
         void setDescricao(string descricao);
         void setValorAtual(double valorAtual);
+        void setAtingida(bool atingida);
 
         void exibirDados() const;
         double calcularProgresso()const;

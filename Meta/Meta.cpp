@@ -55,6 +55,9 @@ void Meta::setDescricao(string descricao) {
 void Meta::setValorAtual(double valorAtual) { 
     this->valorAtual = valorAtual; 
 }
+void Meta::setAtingida(bool atingida) {
+    this->atingida = atingida;
+}
 
 void Meta::exibirDados() const {
     cout << "ID: " << idMeta << "\n"
@@ -67,6 +70,11 @@ void Meta::exibirDados() const {
 
 
 double Meta::calcularProgresso()const {
+    if (orcamento <= 0) {
+        cout << "Orçamento deve ser maior que zero!" << "\n";
+        return;
+    }
+
     double progresso = (valorAtual / orcamento) *100;
     return progresso;
 }
@@ -80,9 +88,14 @@ void Meta::acrescerValorAtual(double valor) {
 }
 
 void Meta::diminuirValorAtual(double valor) {
+    if (valorAtual - valor <= 0) {
+        cout << "Novo valor deve ser maior que zero!" << "\n";
+        return;
+    }
+
     valorAtual -= valor;
     if(valorAtual < orcamento){
-        atingida = false;
+        this->setAtingida(false);
         exibirProgresso();
         exibirQuantoFalta();
     }

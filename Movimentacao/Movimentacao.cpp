@@ -3,6 +3,8 @@
 
 using namespace std;
 
+Movimentacao::Movimentacao() {};
+
 Movimentacao::Movimentacao(
     int id,
     double valor,
