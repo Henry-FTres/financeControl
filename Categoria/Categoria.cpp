@@ -2,7 +2,9 @@
 #include <iostream>
  
 using namespace std;
- 
+
+Categoria::Categoria(){}
+
 Categoria::Categoria(
     int idCategoria,
     string nome,
@@ -13,9 +15,25 @@ Categoria::Categoria(
     this->fixo = fixo;
 };
  
-int Categoria::getIdCategoria() const {return this->idCategoria;}
-string Categoria::getNome() const {return this->nome;};
-bool Categoria::getFixo() const {return this->fixo;}
+int Categoria::getIdCategoria() const {
+    return this->idCategoria;
+}
+string Categoria::getNome() const {
+    return this->nome;
+};
+bool Categoria::getFixo() const {
+    return this->fixo;
+}
  
-void Categoria::setNome(string nome) {this->nome = nome;}
-void Categoria::setFixo(bool fixo) {this->fixo = fixo;}
+void Categoria::setNome(string nome) {
+    this->nome = nome;
+}
+void Categoria::setFixo(bool fixo) {
+    this->fixo = fixo;
+}
+
+void Categoria::exibirDados()const{
+    cout << "ID: " << idCategoria << "\n"
+     << "Nome: " << nome << "\n"
+     << "Tipo: " << (fixo ? "Fixa" : "Personalizada") << "\n";
+}

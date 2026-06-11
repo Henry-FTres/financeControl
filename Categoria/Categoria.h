@@ -10,6 +10,7 @@ class Categoria {
         int idCategoria;
         string nome;
         bool fixo;
+
     public:
         Categoria();
  
@@ -25,6 +26,8 @@ class Categoria {
  
         void setNome(string nome);
         void setFixo(bool fixo);
+
+        void exibirDados()const;
 };
  
 #endif
