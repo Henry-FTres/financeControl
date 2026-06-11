@@ -1,28 +1,30 @@
 
 # financeControl
 
-## 1. Visao geral do software
+## 1. Visão geral do software
 
-O **financeControl** e um sistema de controle financeiro desenvolvido em C++ para organizar pessoas, contas, movimentacoes, categorias e metas. O objetivo do trabalho e permitir o cadastro e o acompanhamento de informacoes financeiras de forma simples, usando conceitos de Programacao Orientada a Objetos.
+O **financeControl** é um sistema de controle financeiro desenvolvido em C++ para organizar pessoas, contas, movimentações, categorias e metas. O objetivo do trabalho é permitir o cadastro e o acompanhamento de informações financeiras de forma simples, usando conceitos de Programação Orientada a Objetos.
 
 ### Problema que o software resolve
 
-Muitas pessoas e empresas precisam registrar entradas, saidas, contas, categorias e objetivos financeiros em um unico lugar. Este projeto resolve esse problema ao centralizar esses dados e permitir consultas como:
+Muitas pessoas e empresas precisam registrar entradas, saédas, contas, categorias e objetivos financeiros em um único lugar. Este projeto resolve esse problema ao centralizar esses dados e permitir consultas como:
 
-- cadastro de pessoas fisicas e juridicas;
-- criacao e gerenciamento de contas;
-- registro de movimentacoes financeiras;
-- organizacao por categorias;
+- cadastro de pessoas físicas e jurídicas;
+- criação e gerenciamento de contas;
+- registro de movimentações financeiras;
+- organização por categorias;
 - acompanhamento de metas financeiras;
 - consulta de saldo total e saldo por categoria.
+
+![Modelo Lógico](modelo_logico.png)
 
 ### Principais funcionalidades
 
 - criar, listar e selecionar pessoas;
-- diferenciar pessoa fisica e pessoa juridica;
+- diferenciar pessoa física e pessoa jurídica;
 - adicionar e remover contas;
-- adicionar, listar e remover movimentacoes;
-- cadastrar categorias padrao e novas categorias;
+- adicionar, listar e remover movimentações;
+- cadastrar categorias padrão e novas categorias;
 - criar metas e acompanhar progresso;
 - calcular saldo total e saldo por categoria;
 - transferir valores entre contas.
@@ -33,38 +35,68 @@ Muitas pessoas e empresas precisam registrar entradas, saidas, contas, categoria
 
 ### Leitura do diagrama
 
-- `Pessoa` e a classe base abstrata.
+- `Pessoa` é a classe base abstrata.
 - `PessoaFisica` e `PessoaJuridica` herdam de `Pessoa`.
-- `Pessoa` possui varias `Conta` e varias `Meta`.
-- `Conta` possui varias `Movimentacao`.
+- `Pessoa` possui várias `Conta` e várias `Meta`.
+- `Conta` possui várias `Movimentacao`.
 - `Movimentacao` referencia uma `Categoria`.
-- `Conta` e `Pessoa` usam `Categoria` para consultas de saldo e classificacao.
+- `Conta` e `Pessoa` usam `Categoria` para consultas de saldo e classificação.
 
 ## 3. Breve descricao sobre a linguagem escolhida
 
-O projeto foi desenvolvido em **C++**, uma linguagem compilada, rapida e bastante usada em sistemas que exigem controle direto sobre memoria e boa performance. No trabalho, C++ foi uma boa escolha porque permitiu aplicar conceitos importantes de Programacao Orientada a Objetos, como:
+# O que é o C++?
 
-- classes e objetos;
-- encapsulamento com atributos privados e metodos publicos;
-- heranca entre `Pessoa`, `PessoaFisica` e `PessoaJuridica`;
-- polimorfismo por meio de metodos virtuais;
-- uso de `vector` para armazenar listas dinamicas de objetos.
+- Eficiência e  Baixo e Alto Nível
+- Desenvolvido por Bjarne Stroustrup em 1979
+- C with Classes
+- Renomeada para C++ em 1983
 
-## 4. Implementacoes realizadas na linguagem
+![Linha do tempo das versões da linguagem C++](languageversions.png)
+
+# Principais aplicações:
+
+- Engine de jogos;
+- Sistemas operacionais;
+- Sistemas embarcados;
+- Navegadores da web;
+- Aplicações da Blockchain;
+- IoT;
+- Entre outros;
+
+# Principais características:
+
+- Incremento;
+- Alta performance;
+- Gerenciamento de memória de baixo nível;
+
+# Vantagens:
+
+- Grande desempenho;
+- Bastante utilizada no mercado;
+- Suporta Orientação a Objetos;
+- Grande diversidade de bibliotecas;
+- Compatível com C;
+
+# Desvantagens:
+
+- Curva de aprendizado maior;
+- Gerenciamento de memória em baixo nível;
+
+## 4. Implementações realizadas na linguagem
 
 ### 4.1 Classe abstrata Pessoa
 
-A classe `Pessoa` centraliza os dados comuns entre pessoas fisicas e juridicas, como nome, email, telefone, contas e metas. Ela tambem define o metodo abstrato `exibirDados()`, obrigando as classes filhas a implementarem sua propria exibicao.
+A classe `Pessoa` centraliza os dados comuns entre pessoas físicas e jurídicas, como nome, email, telefone, contas e metas. Ela também define o método abstrato `exibirDados()`, obrigando as classes filhas a implementarem sua própria exibição.
 
 ```cpp
 virtual void exibirDados() const = 0;
 ```
 
-Isso garante polimorfismo e separa o que e comum do que e especifico de cada tipo de pessoa.
+Isso garante polimorfismo e separa o que é comum do que é específico de cada tipo de pessoa.
 
-### 4.2 Heranca em PessoaFisica e PessoaJuridica
+### 4.2 Herança em PessoaFisica e PessoaJuridica
 
-As classes filhas reaproveitam a estrutura da classe base e adicionam seus campos especificos.
+As classes filhas reaproveitam a estrutura da classe base e adicionam seus campos específicos.
 
 ```cpp
 class PessoaFisica : public Pessoa {
@@ -74,11 +106,11 @@ class PessoaFisica : public Pessoa {
 class PessoaJuridica : public Pessoa {
 ```
 
-Assim, o sistema evita repeticao de codigo e torna a manutencao mais simples.
+Assim, o sistema evita repetiçã de código e torna a manutenção mais simples.
 
-### 4.3 Controle de contas e movimentacoes
+### 4.3 Controle de contas e movimentações
 
-A classe `Conta` armazena informacoes bancarias e uma lista de movimentacoes. O sistema permite adicionar, listar e remover movimentacoes, alem de realizar transferencia entre contas.
+A classe `Conta` armazena informações bancárias e uma lista de movimentações. O sistema permite adicionar, listar e remover movimentações, além de realizar transferência entre contas.
 
 ```cpp
 void adicionarMovimentacao(const Movimentacao& m);
@@ -86,9 +118,9 @@ void removerMovimentacao(int id);
 void transferir(Conta& destino, double valor);
 ```
 
-### 4.4 Classificacao por categoria
+### 4.4 Classificação por categoria
 
-Cada movimentacao recebe uma `Categoria`, o que permite organizar entradas e saidas e calcular totais por categoria.
+Cada movimentação recebe uma `Categoria`, o que permite organizar entradas e saídas e calcular totais por categoria.
 
 ```cpp
 double totalPorCategoria(const Categoria& categoria, const std::string& tipoMovimentacao) const;
@@ -96,7 +128,7 @@ double totalPorCategoria(const Categoria& categoria, const std::string& tipoMovi
 
 ### 4.5 Metas financeiras
 
-A classe `Meta` representa um objetivo financeiro com orcamento, prazo, descricao e progresso. Ela permite acompanhar quanto ja foi acumulado e quanto ainda falta.
+A classe `Meta` representa um objetivo financeiro com orçamento, prazo, descrição e progresso. Ela permite acompanhar quanto já foi acumulado e quanto ainda falta.
 
 ```cpp
 double calcularProgresso() const;
@@ -104,21 +136,21 @@ void exibirProgresso() const;
 void exibirQuantoFalta() const;
 ```
 
-## 5. Exemplos de trechos relevantes do codigo
+## 5. Exemplos de trechos relevantes do código
 
-### Exemplo 1: criacao de uma pessoa fisica
+### Exemplo 1: criação de uma pessoa física
 
 ```cpp
 pessoasFisicas.push_back(PessoaFisica(id, nome, email, telefone, cpf, dataNascimento));
 ```
 
-### Exemplo 2: criacao de uma conta
+### Exemplo 2: criação de uma conta
 
 ```cpp
 p.adicionarConta(Conta(id, instituicao, numeroConta, chavePix, saldo, tipoConta));
 ```
 
-### Exemplo 3: criacao de uma movimentacao com categoria
+### Exemplo 3: criação de uma movimentação com categoria
 
 ```cpp
 conta->adicionarMovimentacao(Movimentacao(
@@ -132,33 +164,33 @@ conta->adicionarMovimentacao(Movimentacao(
 ));
 ```
 
-### Exemplo 4: criacao de uma meta
+### Exemplo 4: criação de uma meta
 
 ```cpp
 pf.adicionarMeta(Meta(id, orcamento, prazo, descricao, valorAtual));
 ```
 
-## 6. Demonstracao da execucao
+## 6. Demonstração da execução
 
-O programa possui um menu em modo texto. A execucao comeca na classe principal do arquivo `Main2.cpp`, onde sao exibidas as opcoes para:
+O programa possui um menu em modo texto. A execução começa na classe principal do arquivo `Main2.cpp`, onde são exibidas as opções para:
 
-- criar pessoa fisica;
-- criar pessoa juridica;
+- criar pessoa física;
+- criar pessoa jurídica;
 - listar pessoas;
 - selecionar uma pessoa;
 - gerenciar categorias;
 - sair do sistema.
 
-Ao selecionar uma pessoa, e possivel acessar novos menus para:
+Ao selecionar uma pessoa, é possível acessar novos menus para:
 
 - exibir dados;
 - gerenciar contas;
 - adicionar e listar metas;
 - remover metas;
-- cadastrar e listar movimentacoes;
+- cadastrar e listar movimentações;
 - consultar saldo total e saldo por categoria.
 
-### Saida esperada na inicializacao
+### Saída esperada na inicialização
 
 ```text
 Controle Financeiro
@@ -170,50 +202,22 @@ Controle Financeiro
 6 - Sair
 ```
 
-### Observacao importante da execucao
+### Observação importante da execução
 
-No menu principal, a opcao de saida e `6`.
+No menu principal, a opção de saída í `6`.
 
 ## 7. Como compilar
 
-Os comandos abaixo ja estao validados no projeto.
+Os comandos abaixo já estão validados no projeto.
 
-### Compilacao
+### Compilação
 
 ```bash
-g++ Main2.cpp Categoria\Categoria.cpp Conta\Conta.cpp Movimentacao\Movimentacao.cpp Meta\Meta.cpp Pessoa\Pessoa.cpp PessoaFisica\PessoaFisica.cpp PessoaJuridica\PessoaJuridica.cpp -o financeControl.exe
+g++ Main.cpp Categoria\Categoria.cpp Conta\Conta.cpp Movimentacao\Movimentacao.cpp Meta\Meta.cpp Pessoa\Pessoa.cpp PessoaFisica\PessoaFisica.cpp PessoaJuridica\PessoaJuridica.cpp -o financeControl.exe
 ```
 
-### Execucao
+### Execução
 
 ```bash
 .\financeControl.exe
 ```
-
-## 8. Roteiro sugerido para apresentacao
-
-1. Apresente o software e o problema que ele resolve.
-2. Mostre o diagrama de classes e explique as relacoes entre elas.
-3. Explique por que C++ foi escolhido.
-4. Mostre os principais trechos de codigo e o papel de cada classe.
-5. Execute o sistema ao vivo e navegue pelos menus principais.
-6. Finalize mostrando uma pessoa, uma conta, uma movimentacao e uma meta cadastradas.
-
-## 9. Estrutura do projeto
-
-```text
-financeControl/
-├── Main.cpp
-├── Main2.cpp
-├── Categoria/
-├── Conta/
-├── Meta/
-├── Movimentacao/
-├── Pessoa/
-├── PessoaFisica/
-└── PessoaJuridica/
-```
-
-## 10. Conclusao
-
-O projeto financeControl demonstra a aplicacao pratica de Programacao Orientada a Objetos em C++, com classes bem separadas, heranca, encapsulamento e organizacao de dados financeiros. O sistema atende ao objetivo de registrar e consultar informacoes de forma clara, servindo como base para futuras melhorias, como persistencia em arquivo e validacoes mais completas.
