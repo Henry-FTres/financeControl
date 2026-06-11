@@ -8,30 +8,30 @@ using namespace std;
 
 class PessoaJuridica : public Pessoa {
     private: 
-        string cnpj;
-        string razaoSocial;
+        std::string cnpj;
+        std::string razaoSocial;
 
     public:
         PessoaJuridica() {};
 
         PessoaJuridica(
             int id,
-            string nome,
-            string email,
-            string telefone,
-            string cnpj,
-            string razaoSocial,
-            vector<Conta> contas = {}, 
-            vector<Meta> metas = {}
+            std::string nome,
+            std::string email,
+            std::string telefone,
+            std::string cnpj,
+            std::string razaoSocial,
+            std::vector<Conta> contas = {}, 
+            std::vector<Meta> metas = {}
         );
 
         //getters
-        string getCnpj() const;
-        string getRazaoSocial() const;
+        std::string getCnpj() const;
+        std::string getRazaoSocial() const;
 
         //setters
-        void setCnpj(string cnpj);
-        void setRazaoSocial(string razaoSocial);
+        void setCnpj(std::string cnpj);
+        void setRazaoSocial(std::string razaoSocial);
 
         void exibirDados() const override;
 };

@@ -8,30 +8,30 @@ using namespace std;
  
 class PessoaFisica : public Pessoa {
     private:
-        string cpf;
-        string dataNascimento;
+        std::string cpf;
+        std::string dataNascimento;
  
     public:
         PessoaFisica() {};
 
         PessoaFisica(
             int id,
-            string nome,
-            string email,
-            string telefone,
-            string cpf,
-            string dataNascimento,
-            vector<Conta> contas = {},
-            vector<Meta> metas = {}
+            std::string nome,
+            std::string email,
+            std::string telefone,
+            std::string cpf,
+            std::string dataNascimento,
+            std::vector<Conta> contas = {},
+            std::vector<Meta> metas = {}
         );
         
         //getters
-        string getCpf() const;
+        std::string getCpf() const;
         string getDataNascimento() const;
 
         //setters
-        void setCpf(string cpf);
-        void setDataNascimento(string dataNascimento);
+        void setCpf(std::string cpf);
+        void setDataNascimento(std::string dataNascimento);
  
         void exibirDados() const override;
  

@@ -4,16 +4,14 @@
 #include <string>
 #include "Categoria.h"
 
-using namespace std;
-
 class Movimentacao {
     private:
         int id;
-        string data;
+        std::string data;
         double valor;
-        string tipoMovimentacao;
-        string descricao;
-        string contraparte;
+        std::string tipoMovimentacao;
+        std::string descricao;
+        std::string contraparte;
         Categoria categoria;
 
     public:
@@ -22,26 +20,26 @@ class Movimentacao {
         Movimentacao(
             int id,
             double valor,
-            string data,
-            string tipoMovimentacao,
-            string descricao,
-            string contraparte,
+            std::string data,
+            std::string tipoMovimentacao,
+            std::string descricao,
+            std::string contraparte,
             Categoria categoria
         );
 
         int getId() const;
         double getValor() const;
-        string getData() const;
-        string getTipoMovimentacao() const;
-        string getDescricao() const;
-        string getContraparte() const;
+        std::string getData() const;
+        std::string getTipoMovimentacao() const;
+        std::string getDescricao() const;
+        std::string getContraparte() const;
         Categoria getCategoria() const;
 
         void setValor(double valor);
-        void setData(string data); 
-        void setTipoMovimentacao(string tipoMovimentacao);
-        void setDescricao(string descricao);
-        void setContraparte(string contraparte);
+        void setData(std::string data); 
+        void setTipoMovimentacao(std::string tipoMovimentacao);
+        void setDescricao(std::string descricao);
+        void setContraparte(std::string contraparte);
         void setCategoria(Categoria categoria);
 
         void exibirDados() const;

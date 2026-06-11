@@ -2,13 +2,11 @@
 #define CATEGORIA_H
  
 #include <iostream>
- 
-using namespace std;
- 
+  
 class Categoria {
     private:
         int idCategoria;
-        string nome;
+        std::string nome;
         bool fixo;
 
     public:
@@ -16,15 +14,15 @@ class Categoria {
  
         Categoria(
             int idCategoria,
-            string nome,
+            std::string nome,
             bool fixo
         );
  
         int getIdCategoria() const;
-        string getNome() const;
+        std::string getNome() const;
         bool getFixo() const;
  
-        void setNome(string nome);
+        void setNome(std::string nome);
         void setFixo(bool fixo);
 
         void exibirDados() const;
