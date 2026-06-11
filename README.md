@@ -7,7 +7,7 @@ O **financeControl** é um sistema de controle financeiro desenvolvido em C++ pa
 
 ### Problema que o software resolve
 
-Muitas pessoas e empresas precisam registrar entradas, saédas, contas, categorias e objetivos financeiros em um único lugar. Este projeto resolve esse problema ao centralizar esses dados e permitir consultas como:
+Muitas pessoas e empresas precisam registrar entradas, saídas, contas, categorias e objetivos financeiros em um único lugar. Este projeto resolve esse problema ao centralizar esses dados e permitir consultas como:
 
 - cadastro de pessoas físicas e jurídicas;
 - criação e gerenciamento de contas;
@@ -18,16 +18,6 @@ Muitas pessoas e empresas precisam registrar entradas, saédas, contas, categori
 
 ![Modelo Lógico](modelo_logico.png)
 
-### Principais funcionalidades
-
-- criar, listar e selecionar pessoas;
-- diferenciar pessoa física e pessoa jurídica;
-- adicionar e remover contas;
-- adicionar, listar e remover movimentações;
-- cadastrar categorias padrão e novas categorias;
-- criar metas e acompanhar progresso;
-- calcular saldo total e saldo por categoria;
-- transferir valores entre contas.
 
 ## 2. Diagrama das classes
 
@@ -106,7 +96,7 @@ class PessoaFisica : public Pessoa {
 class PessoaJuridica : public Pessoa {
 ```
 
-Assim, o sistema evita repetiçã de código e torna a manutenção mais simples.
+Assim, o sistema evita repetição de código e torna a manutenção mais simples.
 
 ### 4.3 Controle de contas e movimentações
 
@@ -136,77 +126,189 @@ void exibirProgresso() const;
 void exibirQuantoFalta() const;
 ```
 
-## 5. Exemplos de trechos relevantes do código
+## 5. Conceitos de Orientação a Objetos 
 
-### Exemplo 1: criação de uma pessoa física
+### 5.1 Classe Abstrata e Herança
 
+A classe `Pessoa` é abstrata e define o contrato que `PessoaFisica` e `PessoaJuridica` devem seguir. Isso exemplifica **herança** e **polimorfismo**.
+
+**Declaração da classe base (Pessoa.h):**
 ```cpp
-pessoasFisicas.push_back(PessoaFisica(id, nome, email, telefone, cpf, dataNascimento));
+class Pessoa {
+protected:
+    int id;
+    string nome;
+    string email;
+    string telefone;
+    vector<Conta> contas;
+    vector<Meta> metas;
+public:
+    virtual void exibirDados() const = 0;  // Método abstrato
+    void adicionarConta(const Conta& c);
+    void adicionarMeta(const Meta& m);
+};
 ```
 
-### Exemplo 2: criação de uma conta
-
+**Herança em PessoaFisica:**
 ```cpp
-p.adicionarConta(Conta(id, instituicao, numeroConta, chavePix, saldo, tipoConta));
+class PessoaFisica : public Pessoa {
+private:
+    string cpf;
+    string dataNascimento;
+public:
+    PessoaFisica(int id, string nome, string email, string telefone, 
+                 string cpf, string dataNascimento);
+    void exibirDados() const override;  // Implementação obrigatória
+};
 ```
 
-### Exemplo 3: criação de uma movimentação com categoria
+### 5.2 Instanciação de Objetos e Polimorfismo em Ação
 
+**Criação de pessoa física (instância de classe filha):**
 ```cpp
+vector<PessoaFisica> pessoasFisicas;
+pessoasFisicas.push_back(
+    PessoaFisica(1, "João Silva", "joao@email.com", "11999999999", 
+                 "123.456.789-00", "15/05/1990")
+);
+```
+
+**Chamada polimórfica (cada classe filha implementa seu próprio `exibirDados()`):**
+```cpp
+for (auto& pf : pessoasFisicas) {
+    pf.exibirDados();  // Invoca PessoaFisica::exibirDados()
+}
+for (auto& pj : pessoasJuridicas) {
+    pj.exibirDados();  // Invoca PessoaJuridica::exibirDados()
+}
+```
+
+### 5.3 Composição e Encapsulamento
+
+A classe `Pessoa` **contém** (`has-a`) várias `Conta` e `Meta`. Isso exemplifica **composição**.
+
+**Declaração de membros compostos:**
+```cpp
+class Pessoa {
+private:
+    vector<Conta> contas;      // Composição: Pessoa contém Contas
+    vector<Meta> metas;        // Composição: Pessoa contém Metas
+public:
+    void adicionarConta(const Conta& c) { contas.push_back(c); }
+    Conta* encontrarContaPorId(int id);
+};
+```
+
+**Uso de composição no programa principal:**
+```cpp
+Pessoa& p = pessoasFisicas[0];
+p.adicionarConta(Conta(101, "Banco do Brasil", "12345-6", "chave@pix", 5000.0, "Corrente"));
+p.listarContas();  // Exibe todas as contas dessa pessoa
+```
+
+### 5.4 Associação e Referências
+
+Uma `Movimentacao` referencia uma `Categoria`, exemplificando **associação**.
+
+**Declaração de associação:**
+```cpp
+class Movimentacao {
+private:
+    int id;
+    double valor;
+    string data;
+    string tipoMovimentacao;
+    string descricao;
+    string contraparte;
+    Categoria categoria;  // Associação: Movimentação tem uma Categoria
+public:
+    Movimentacao(int id, double valor, string data, string tipoMovimentacao,
+                 string descricao, string contraparte, Categoria categoria);
+    Categoria getCategoria() const { return categoria; }
+};
+```
+
+**Instanciação com associação:**
+```cpp
+vector<Categoria> categorias;
+categorias.push_back(Categoria(1, "Alimentação", true));
+categorias.push_back(Categoria(2, "Transporte", true));
+
+Conta* conta = p.encontrarContaPorId(101);
 conta->adicionarMovimentacao(Movimentacao(
-	id,
-	valor,
-	data,
-	tipoMovimentacao,
-	descricao,
-	contraparte,
-	categorias[categoriaIdx - 1]
+    1001,
+    150.50,
+    "11/06/2024",
+    "saída",
+    "Compras no supermercado",
+    "Mercado XYZ",
+    categorias[0]  // Associação: passa uma Categoria existente
 ));
 ```
 
-### Exemplo 4: criação de uma meta
+### 5.5 Métodos de Consulta (Getters) e Encapsulamento
 
+Os atributos são privados; o acesso ocorre através de métodos públicos, garantindo **encapsulamento**.
+
+**Exemplo de getter em Conta:**
 ```cpp
-pf.adicionarMeta(Meta(id, orcamento, prazo, descricao, valorAtual));
+class Conta {
+private:
+    int id;
+    string numeroConta;
+    double saldo;
+    vector<Movimentacao> movimentacoes;
+public:
+    int getId() const { return id; }
+    string getNumeroConta() const { return numeroConta; }
+    double getSaldo() const { return saldo; }
+    vector<Movimentacao> getMovimentacoes() const { return movimentacoes; }
+};
 ```
 
-## 6. Demonstração da execução
-
-O programa possui um menu em modo texto. A execução começa na classe principal do arquivo `Main2.cpp`, onde são exibidas as opções para:
-
-- criar pessoa física;
-- criar pessoa jurídica;
-- listar pessoas;
-- selecionar uma pessoa;
-- gerenciar categorias;
-- sair do sistema.
-
-Ao selecionar uma pessoa, é possível acessar novos menus para:
-
-- exibir dados;
-- gerenciar contas;
-- adicionar e listar metas;
-- remover metas;
-- cadastrar e listar movimentações;
-- consultar saldo total e saldo por categoria.
-
-### Saída esperada na inicialização
-
-```text
-Controle Financeiro
-1 - Criar Pessoa Fisica
-2 - Criar Pessoa Juridica
-3 - Listar Pessoas
-4 - Selecionar Pessoa
-5 - Gerenciar Categorias
-6 - Sair
+**Uso seguro dos dados:**
+```cpp
+Conta* conta = p.encontrarContaPorId(101);
+cout << "Saldo atual: " << conta->getSaldo() << endl;
+cout << "Número: " << conta->getNumeroConta() << endl;
 ```
 
-### Observação importante da execução
+### 5.6 Coleções (Agregação) e Iteração
 
-No menu principal, a opção de saída í `6`.
+As classes utilizam `vector` (coleção) para armazenar múltiplas instâncias de outras classes.
 
-## 7. Como compilar
+**Declaração de coleções:**
+```cpp
+class Pessoa {
+private:
+    vector<Conta> contas;      // Coleção de Conta
+    vector<Meta> metas;        // Coleção de Meta
+};
+
+class Conta {
+private:
+    vector<Movimentacao> movimentacoes;  // Coleção de Movimentacao
+};
+```
+
+**Iteração polimórfica e acesso aos objetos:**
+```cpp
+vector<PessoaFisica> pessoasFisicas;
+vector<PessoaJuridica> pessoasJuridicas;
+
+// Iteração e exibição polimórfica
+for (auto& pf : pessoasFisicas) {
+    cout << "ID: " << pf.getId() << " | Nome: " << pf.getNome() << "\n";
+    pf.listarContas();  // Método da classe Pessoa
+}
+
+for (auto& pj : pessoasJuridicas) {
+    cout << "ID: " << pj.getId() << " | Nome: " << pj.getNome() << "\n";
+    pj.listarContas();  // Mesmo método, comportamento específico
+}
+```
+
+## 6. Como compilar
 
 Os comandos abaixo já estão validados no projeto.
 
