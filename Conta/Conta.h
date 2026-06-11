@@ -3,7 +3,8 @@
 
 #include <iostream>
 #include <vector>
-#include "Movimentacao.h"
+#include "../Movimentacao/Movimentacao.h"
+#include "../Categoria/Categoria.h"
 
 class Conta {
     private:

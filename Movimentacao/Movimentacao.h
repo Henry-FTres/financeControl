@@ -2,7 +2,7 @@
 #define MOVIMENTACAO_H
 
 #include <string>
-#include "Categoria.h"
+#include "../Categoria/Categoria.h"
 
 class Movimentacao {
     private:
@@ -43,7 +43,6 @@ class Movimentacao {
         void setCategoria(Categoria categoria);
 
         void exibirDados() const;
-        void atualizarCategoria(Categoria categoria);
         void editarValor(double valor);
 };
 

@@ -1,7 +1,7 @@
 #ifndef PESSOAFISICA_H
 #define PESSOAFISICA_H
  
-#include "Pessoa.h"
+#include "../Pessoa/Pessoa.h"
 #include <string>
  
 class PessoaFisica : public Pessoa {
@@ -25,7 +25,7 @@ class PessoaFisica : public Pessoa {
         
         //getters
         std::string getCpf() const;
-        string getDataNascimento() const;
+        std::string getDataNascimento() const;
 
         //setters
         void setCpf(std::string cpf);

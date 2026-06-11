@@ -48,10 +48,6 @@ void Movimentacao::exibirDados() const {
          << "Categoria: " << getCategoria().getNome() << "\n";
 }
 
-void Movimentacao::atualizarCategoria(Categoria categoria) {
-    this->setCategoria(categoria);
-}
-
 void Movimentacao::editarValor(double valor) {
     if (valor <= 0) {
         cout << "Valor deve ser maior que zero!" << "\n";

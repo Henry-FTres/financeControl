@@ -3,9 +3,9 @@
 
 #include <string>
 #include <vector>
-#include "Conta.h"
-#include "Meta.h"
-#include "Categoria.h"
+#include "../Conta/Conta.h"
+#include "../Meta/Meta.h"
+#include "../Categoria/Categoria.h"
 
 class Pessoa {
     private:
@@ -47,11 +47,15 @@ class Pessoa {
 
         void adicionarConta(Conta conta);
         void removerConta(Conta conta);
+        void listarContas() const;
+        Conta* encontrarContaPorId(int id); //retorna um ponteiro para modificar o objeto verdadeiro e não uma cópia
         void adicionarMeta(Meta meta);
         void removerMeta(Meta meta);
         double calcularSaldoTotal() const;
         double calcularSaldoCategoria(Categoria& categoria, std::string& tipoMovimentacao) const;
         void listarMetas() const;
+        void exibirSaldoTotal()const;
+        void exibirSaldoCategoria(Categoria& categoria, std::string& tipoMovimentacao)const;
 };
 
 #endif

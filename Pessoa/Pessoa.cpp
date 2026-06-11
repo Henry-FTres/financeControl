@@ -63,6 +63,28 @@ void Pessoa::removerConta(Conta conta){
     }
 }
 
+void Pessoa::listarContas() const {
+    if (contas.empty()) {
+        cout << "Nenhuma conta cadastrada.\n";
+        return;
+    }
+
+    for (const auto& conta : contas) {
+        conta.exibirDados();
+        cout << "---\n";
+    }
+}
+
+Conta* Pessoa::encontrarContaPorId(int id) {
+    for (auto& conta : contas) {
+        if (conta.getId() == id) {
+            return &conta;
+        }
+    }
+
+    return nullptr;
+}
+
 void Pessoa::adicionarMeta(Meta meta){
     metas.push_back(meta);
 }
@@ -98,4 +120,12 @@ double Pessoa::calcularSaldoCategoria(Categoria& categoria, string& tipoMoviment
     }
 
     return saldoCategoria;
+}
+
+void Pessoa::exibirSaldoTotal() const {
+    cout << "Saldo total: R$ " << calcularSaldoTotal() << "\n";
+}
+
+void Pessoa::exibirSaldoCategoria(Categoria& categoria, string& tipoMovimentacao) const {
+    cout << "Saldo da categoria " << categoria.getNome() << ": R$ " << calcularSaldoCategoria(categoria, tipoMovimentacao) << "\n";
 }
