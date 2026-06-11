@@ -35,3 +35,26 @@ void Movimentacao::setTipoMovimentacao(string tipoMovimentacao) {this->tipoMovim
 void Movimentacao::setDescricao(string descricao) {this->descricao = descricao;}
 void Movimentacao::setContraparte(string contraparte) {this->contraparte = contraparte;}
 void Movimentacao::setCategoria(Categoria categoria) {this->categoria = categoria;}
+
+void Movimentacao::exibirDados() const {
+    cout << "ID: " << getId() << "\n"
+         << "Valor: " << getValor() << "\n"
+         << "Data: " << getData() << "\n"
+         << "Tipo da Movimentação: " << getTipoMovimentacao() << "\n"
+         << "Descrição: " << getDescricao() << "\n"
+         << "Contraparte: " << getContraparte() << "\n"
+         << "Categoria: " << getCategoria().getNome() << "\n";
+}
+
+void Movimentacao::atualizarCategoria(Categoria categoria) {
+    this->setCategoria(categoria);
+}
+
+void Movimentacao::editarValor(double valor) {
+    if (valor <= 0) {
+        cout << "Valor deve ser maior que zero!" << "\n";
+        return;
+    }
+
+    this->setValor(valor);
+}
