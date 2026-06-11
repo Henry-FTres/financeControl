@@ -11,7 +11,7 @@ class Conta {
     private:
         int id;
         string instituicao;
-        string nroConta;
+        string numeroConta;
         string chavePix;
         double saldo;
         string tipoConta;
@@ -23,21 +23,22 @@ class Conta {
             Conta(
                 int id,
                 string instituicao,
-                string nroConta,
+                string numeroConta,
                 string chavePix,
                 double saldo,
-                string tipoConta
+                string tipoConta,
+                vector<Movimentacao> movimentacoes = {}
             );
 
             int getId() const;
             string getInstituicao() const;
-            string getNroConta() const;
+            string getNumeroConta() const;
             string getChavePix() const;
             double getSaldo() const;
             string getTipoConta() const;
 
             void setInstituicao(string instituicao);
-            void setNroConta(string nroConta);
+            void setNumeroConta(string numeroConta);
             void setChavePix(string chavePix);
             void setSaldo(double saldo);
             void setTipoConta(string tipoConta);
@@ -53,3 +54,4 @@ class Conta {
 
 
 #endif
+
