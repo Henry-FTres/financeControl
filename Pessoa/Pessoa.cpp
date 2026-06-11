@@ -69,15 +69,33 @@ void Pessoa::adicionarMeta(Meta meta){
 
 void Pessoa::removerMeta(Meta meta){
     for (auto it = metas.begin(); it != metas.end(); it++) {
-        if (it->getId() == meta.getId()) {
+        if (it->getIdMeta() == meta.getIdMeta()) {
             metas.erase(it);
             break;
         }
     }
 }
 
-void Pessoa::listarMetas(){
+void Pessoa::listarMetas() const {
     for (auto& meta : metas) {
         meta.exibirDados();
     }
+}
+
+double Pessoa::calcularSaldoTotal() const {
+    double saldoTotal = 0.0;
+    for (auto c : contas) {
+        saldoTotal += c.getSaldo();
+    }
+
+    return saldoTotal;
+}
+
+double Pessoa::calcularSaldoCategoria(Categoria& categoria, string& tipoMovimentacao) const {
+    double saldoCategoria = 0.0;
+    for (auto& c : contas) {
+        saldoCategoria += c.totalPorCategoria(categoria, tipoMovimentacao);
+    }
+
+    return saldoCategoria;
 }

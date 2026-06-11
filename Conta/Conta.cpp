@@ -65,6 +65,11 @@ void Conta::adicionarMovimentacao(const Movimentacao& m) {
 void Conta::removerMovimentacao(int id) {
     for (auto it = movimentacoes.begin(); it != movimentacoes.end(); it++) {
         if (it->getId() == id) {
+            if (it->getTipoMovimentacao() == "entrada") {
+                this->saldo -= it->getValor();
+            } else if (it->getTipoMovimentacao() == "saida") {
+                this->saldo += it->getValor();
+            }
             movimentacoes.erase(it);
             cout << "Movimentação número " << id << " foi removida com sucesso!" << "\n";
             return;
@@ -73,10 +78,10 @@ void Conta::removerMovimentacao(int id) {
     cout << "Movimentação não encontrada!" << "\n";
 }
 
-double Conta::totalPorCategoria(const string& categoria, const string& tipoMovimentacao) const {
+double Conta::totalPorCategoria(const Categoria& categoria, const string& tipoMovimentacao) const {
     double total = 0.0;
     for (const auto& m : movimentacoes) {
-        if (m.getCategoria().getNome() == categoria && m.getTipoMovimentacao() == tipoMovimentacao) {
+        if (m.getCategoria().getNome() == categoria.getNome() && m.getTipoMovimentacao() == tipoMovimentacao) {
             total += m.getValor();
         }
     }
@@ -102,6 +107,7 @@ void Conta::transferir(Conta& destino, double valor) {
 
     this->saldo -= valor;
     destino.setSaldo(destino.getSaldo() + valor);
+
 }
 
 void Conta::listarMovimentacoes() const {

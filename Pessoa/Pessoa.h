@@ -51,9 +51,9 @@ class Pessoa {
         void removerConta(Conta conta);
         void adicionarMeta(Meta meta);
         void removerMeta(Meta meta);
-        double calcularSaldoTotal();
-        double calcularSaldoCategoria(Categoria categoria);
-        void listarMetas();
+        double calcularSaldoTotal() const;
+        double calcularSaldoCategoria(Categoria& categoria, string& tipoMovimentacao) const;
+        void listarMetas() const;
 };
 
 #endif

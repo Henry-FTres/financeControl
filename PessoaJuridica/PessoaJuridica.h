@@ -21,8 +21,8 @@ class PessoaJuridica : public Pessoa {
             string telefone,
             string cnpj,
             string razaoSocial,
-            vector<Conta> contas, 
-            vector<Meta> metas
+            vector<Conta> contas = {}, 
+            vector<Meta> metas = {}
         );
 
         //getters
