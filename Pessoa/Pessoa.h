@@ -7,7 +7,6 @@
 #include "Meta.h"
 #include "Categoria.h"
 
-
 class Pessoa {
     private:
         int id;

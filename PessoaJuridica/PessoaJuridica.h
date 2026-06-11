@@ -4,8 +4,6 @@
 #include "Pessoa.h"
 #include <string>
 
-using namespace std;
-
 class PessoaJuridica : public Pessoa {
     private: 
         std::string cnpj;

@@ -72,7 +72,7 @@ void Meta::exibirDados() const {
 double Meta::calcularProgresso()const {
     if (orcamento <= 0) {
         cout << "Orçamento deve ser maior que zero!" << "\n";
-        return;
+        return 0.0;
     }
 
     double progresso = (valorAtual / orcamento) *100;
@@ -95,7 +95,7 @@ void Meta::diminuirValorAtual(double valor) {
 
     valorAtual -= valor;
     if(valorAtual < orcamento){
-        this->setAtingida(false);
+        setAtingida(false) ;
         exibirProgresso();
         exibirQuantoFalta();
     }
