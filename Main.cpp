@@ -178,7 +178,7 @@ void menuContasPessoa(Pessoa& p, vector<Categoria>& categorias) {
 
 void menuPessoaFisica(PessoaFisica& pf, vector<Categoria>& categorias) {
     int opcao = 0;
-    while (opcao != 1000) {
+    while (opcao != 6) {
         cout << "\n--- " << pf.getNome() << " ---\n";
         cout << "1   - Exibir Dados\n";
         cout << "2   - Gerenciar Contas\n";
